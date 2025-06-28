@@ -2,19 +2,22 @@
 #include <string.h>
 #include <stdbool.h>
 
-bool PalCheck(char *str) {
-  char *newstr = "";
-  for (int i = strlen(str); i >= 0; i--) {
-    newstr += str[i];
+bool PalCheck(const char *str) {
+  int left = 0;
+  int right = strlen(str) - 1;
+  while (left < right) {
+    if (str[left] != str[right]) {
+      return false;
+    }
+    left++;
+    right--;
   }
-  if (strcmp(str, newstr) == 0) {
-    return true;
-  }
-  return false;
+  return true;
 }
 
 int main() {
-  char *str = "bob";
+  char *str = "bobo";
   int result = (int)PalCheck(str);
   printf("%d", result);
+  return 0;
 }
