@@ -1,17 +1,17 @@
 function PalCheck(str) {
-  strarr = str.split('');
-  newStr = [];
-  for (let i = str.length - 1; i >= 0; i--) {
-    newStr.push(strarr[i]);
+  let left = 0;
+  let right = str.length - 1;
+  while (left < right) {
+    if (str[left] != str[right]) {
+      return false;
+    }
+    left++;
+    right--;
   }
-  if (strarr === newStr) {
-    return true;
-  } else {
-    return false;
-  }
+  return true;
 }
 
-if (PalCheck('bob')) {
+if (PalCheck("bob")) {
   console.log(true);
 } else {
   console.log(false);
