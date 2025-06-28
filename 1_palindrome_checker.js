@@ -1,12 +1,18 @@
 function PalCheck(str) {
   strarr = str.split('');
   newStr = [];
-  for (let i = str.length; i <= 0; i--) {
+  for (let i = str.length - 1; i >= 0; i--) {
     newStr.push(strarr[i]);
   }
   if (strarr === newStr) {
-    console.log(true);
+    return true;
   } else {
-    console.log(false);
+    return false;
   }
+}
+
+if (PalCheck('bob')) {
+  console.log(true);
+} else {
+  console.log(false);
 }
