@@ -9,7 +9,7 @@ bool numberisodd(int n) {
 }
 
 int main() {
-  int num = 4;
+  int num = 9;
   int result = (int)numberisodd(num);
   printf("%d", result);
 }
