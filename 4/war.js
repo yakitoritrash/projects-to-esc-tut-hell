@@ -11,8 +11,6 @@
 //
 
 class Cards {
-  value;
-  suit;
   constructor (value, suit) {
     this.value = value;
     this.suit = suit;
@@ -20,24 +18,24 @@ class Cards {
 }
 
 class Deck {
-  cards = [];
   constructor() {
-    for (let i = 0; i < 14; i++) {
-      const card = new Cards(i, hearts);
-      cards.push(card);
+    this.cards = [];
+    const suits = ['hearts', 'spades', 'clubs', 'diamonds'];
+    for (let suit of suits) {
+      for (let value = 2; value <= 14; value++) {
+        this.cards.push(new Cards(value, suit));
+      }
     }
-    for (let i = 0; i < 14; i++) {
-      const card = new Cards(i, spades);
-      cards.push(card);
-    }
-    for (let i = 0; i < 14; i++) {
-      const card = new Cards(i, clubs);
-      cards.push(card);
-    }
-    for (let i = 0; i < 14; i++) {
-      const card = new Cards(i, diamonds);
-      cards.push(card);
-    }
+    Shuffle(cards);
+  }
+}
+
+function Shuffle(arr) {
+  let currentIndex = arr.length;
+  while (currentIndex != 0) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
   }
 }
 
