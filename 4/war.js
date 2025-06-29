@@ -26,17 +26,21 @@ class Deck {
         this.cards.push(new Cards(value, suit));
       }
     }
-    Shuffle(cards);
+    this.Shuffle();
+  }
+  Shuffle() {
+    let currentIndex = this.cards.length;
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [this.cards[currentIndex], this.cards[randomIndex]] = [this.cards[randomIndex], this.cards[currentIndex]];
+    }
   }
 }
 
-function Shuffle(arr) {
-  let currentIndex = arr.length;
-  while (currentIndex != 0) {
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
-  }
+
+class Player {
 }
 
 const deck = new Deck();
+console.log(deck.cards);
