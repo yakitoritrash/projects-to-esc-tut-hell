@@ -38,9 +38,10 @@ class Deck {
   }
 }
 
-
 class Player {
+  constructor() {
 
+  }
 }
 
 const deck = new Deck();
