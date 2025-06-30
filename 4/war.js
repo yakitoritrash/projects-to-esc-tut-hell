@@ -75,25 +75,25 @@ while (player1.hand.length !== 0 || player2.hand.length !== 0) {
 }
 
 function war(topCard1, topCard2) {
-    table = [];
-    table.push(player1.drawCard());
-    table.push(player1.drawCard());
-    table.push(player1.drawCard());
-    topCard1 = table[table.length];
-    table2 = [];
-    table.push(player2.drawCard());
-    table.push(player2.drawCard());
-    table.push(player2.drawCard());
-    topCard2 = table2[table.length];
-    if (topCard1 > topCard2) {
-      player1.push(table);
-      player1.push(table2);
-    }
-    if (topCard2 > topCard1) {
-      player2.push(table);
-      player2.push(table2);
-    }
-    if (topCard1 === topCard2) {
+  table1 = {};
+  table1.push(player1.drawCard())
+  table1.push(player1.drawCard())
+  table1.push(player1.drawCard())
+  table2 = {};
+  table2.push(player2.drawCard())
+  table2.push(player2.drawCard())
+  table2.push(player2.drawCard())
+  if (table1[2] > table2[2]) {
+    player1.hand.push(table1)
+    player1.hand.push(table2)
+    player1.hand.push(topCard2);
+  }
+  if (table1[2] < table2[2]) {
+    player2.hand.push(table1)
+    player2.hand.push(table2)
+    player2.hand.push(topCard1);
+  }
+  if (table1[2] = table2[2]) {
     war();
   }
 }
