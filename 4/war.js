@@ -39,10 +39,20 @@ class Deck {
 }
 
 class Player {
-  constructor() {
-
+  constructor(name) {
+    this.name = name;
+    this.hand = [];
+  }
+  drawCard() {
+    return this.hand.pop();
   }
 }
 
 const deck = new Deck();
-console.log(deck.cards);
+const player1 = new Player('jon');
+const player2 = new Player('ruth');
+
+player1.hand.push(deck.cards.slice(0, 25))
+player2.hand.push(deck.cards.slice(26, 51))
+console.log(player1.hand);
+console.log(player2.hand);
