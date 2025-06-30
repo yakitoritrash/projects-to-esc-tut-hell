@@ -55,12 +55,12 @@ const player2 = new Player('ruth');
 player1.hand = (deck.cards.slice(0, 26))
 player2.hand = (deck.cards.slice(26, 51))
 
-const topCard1 = player1.drawCard();
-const topCard2 = player2.drawCard();
 
-while (player1.hand.length === 0 || player2.hand.length === 0) {
-  console.log(topCard1);
-  console.log(topCard2);
+while (player1.hand.length !== 0 || player2.hand.length !== 0) {
+  const topCard1 = player1.drawCard();
+  const topCard2 = player2.drawCard();
+  console.log(`${player1.name} : ${topCard1}`);
+  console.log(`${player2.name} : ${topCard2}`);
   if (topCard1.value > topCard2.value) {
     player2.hand.pop(topCard2);
     player1.hand.push(topCard1);
@@ -70,6 +70,11 @@ while (player1.hand.length === 0 || player2.hand.length === 0) {
     player2.hand.push(topCard2);
   }
   if (topCard1.value === topCard2.value) {
+    war();
+  }
+}
+
+function war(topCard1, topCard2) {
     table = [];
     table.push(player1.drawCard());
     table.push(player1.drawCard());
@@ -88,5 +93,7 @@ while (player1.hand.length === 0 || player2.hand.length === 0) {
       player2.push(table);
       player2.push(table2);
     }
+    if (topCard1 === topCard2) {
+    war();
   }
 }
