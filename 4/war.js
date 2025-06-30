@@ -52,7 +52,41 @@ const deck = new Deck();
 const player1 = new Player('jon');
 const player2 = new Player('ruth');
 
-player1.hand.push(deck.cards.slice(0, 25))
-player2.hand.push(deck.cards.slice(26, 51))
-console.log(player1.hand);
-console.log(player2.hand);
+player1.hand = (deck.cards.slice(0, 26))
+player2.hand = (deck.cards.slice(26, 51))
+
+const topCard1 = player1.drawCard();
+const topCard2 = player2.drawCard();
+
+while (player1.hand.length === 0 || player2.hand.length === 0) {
+  console.log(topCard1);
+  console.log(topCard2);
+  if (topCard1.value > topCard2.value) {
+    player2.hand.pop(topCard2);
+    player1.hand.push(topCard1);
+  }
+  if (topCard2.value > topCard1.value) {
+    player1.hand.pop(topCard1);
+    player2.hand.push(topCard2);
+  }
+  if (topCard1.value === topCard2.value) {
+    table = [];
+    table.push(player1.drawCard());
+    table.push(player1.drawCard());
+    table.push(player1.drawCard());
+    topCard1 = table[table.length];
+    table2 = [];
+    table.push(player2.drawCard());
+    table.push(player2.drawCard());
+    table.push(player2.drawCard());
+    topCard2 = table2[table.length];
+    if (topCard1 > topCard2) {
+      player1.push(table);
+      player1.push(table2);
+    }
+    if (topCard2 > topCard1) {
+      player2.push(table);
+      player2.push(table2);
+    }
+  }
+}
