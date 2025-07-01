@@ -59,27 +59,35 @@ player2.hand = (deck.cards.slice(26, 51))
 while (player1.hand.length !== 0 || player2.hand.length !== 0) {
   const topCard1 = player1.drawCard();
   const topCard2 = player2.drawCard();
-  console.log(`${player1.name} : ${topCard1}`);
-  console.log(`${player2.name} : ${topCard2}`);
+  console.log(player1.hand);
+  console.log(player2.hand);
+  console.log(`${JSON.stringify(player1.name)} : ${JSON.stringify(topCard1)}`);
+  console.log(`${JSON.stringify(player2.name)} : ${JSON.stringify(topCard2)}`);
   if (topCard1.value > topCard2.value) {
     player2.hand.pop(topCard2);
     player1.hand.push(topCard1);
+    console.log(player1.hand);
+    console.log(player2.hand);
   }
   if (topCard2.value > topCard1.value) {
     player1.hand.pop(topCard1);
     player2.hand.push(topCard2);
+    console.log(player1.hand);
+    console.log(player2.hand);
   }
   if (topCard1.value === topCard2.value) {
-    war();
+    war(topCard1, topCard2);
+    console.log(player1.hand);
+    console.log(player2.hand);
   }
 }
 
 function war(topCard1, topCard2) {
-  table1 = {};
+  table1 = [];
   table1.push(player1.drawCard())
   table1.push(player1.drawCard())
   table1.push(player1.drawCard())
-  table2 = {};
+  table2 = [];
   table2.push(player2.drawCard())
   table2.push(player2.drawCard())
   table2.push(player2.drawCard())
