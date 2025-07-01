@@ -46,6 +46,12 @@ class Player {
   drawCard() {
     return this.hand.pop();
   }
+  hasCards() {
+    return this.hand.length > 0;
+  }
+  cardCount() {
+    return this.hand.length;
+  }
 }
 
 const deck = new Deck();
@@ -53,14 +59,12 @@ const player1 = new Player('jon');
 const player2 = new Player('ruth');
 
 player1.hand = (deck.cards.slice(0, 26))
-player2.hand = (deck.cards.slice(26, 51))
+player2.hand = (deck.cards.slice(26, 52))
 
 
-while (player1.hand.length !== 0 || player2.hand.length !== 0) {
+while (player1.hasCards() && player2.hasCards()) {
   const topCard1 = player1.drawCard();
   const topCard2 = player2.drawCard();
-  console.log(player1.hand);
-  console.log(player2.hand);
   console.log(`${JSON.stringify(player1.name)} : ${JSON.stringify(topCard1)}`);
   console.log(`${JSON.stringify(player2.name)} : ${JSON.stringify(topCard2)}`);
   if (topCard1.value > topCard2.value) {
