@@ -110,14 +110,22 @@ node_t *delete_at(node_t *head, int position) {
 }
 
 node_t *delete_value(node_t *head, int val) {
+  if (head == NULL) {
+    return NULL;
+  }
   if (head->value == val) {
     node_t *to_delete = head;
     head = head->next;
     free (to_delete);
+    return head;
   }
   node_t *tmp = head;
-  while (tmp->value == val) {
+  while (tmp->next != NULL && tmp->next->value != val) {
     tmp = tmp->next;
+  }
+  if (tmp->next == NULL) {
+    printf("Nothing to delete here.\n");
+    return head;
   }
   node_t *to_delete = tmp->next;
   tmp->next = to_delete->next;
@@ -135,9 +143,9 @@ int main() {
   head = prepend(head, 15);
   head = append(head, 2);
   head = insert_at(head, 2, 20);
-  head = delete_at(head, 2);
-  head = delete_value(head, 5);
+  head = delete_at(head, 1);
 
+  head = delete_value(head, 20);
   node_t *tmp = head;
   while (tmp != NULL) {
     printf("%d <-> ", tmp->value);
