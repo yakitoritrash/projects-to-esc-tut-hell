@@ -116,7 +116,7 @@ node_t *delete_value(node_t *head, int val) {
     free (to_delete);
   }
   node_t *tmp = head;
-  while (tmp->next->value == val && tmp->next != NULL) {
+  while (tmp->value == val && tmp->next != NULL) {
     tmp = tmp->next;
   }
   node_t *to_delete = tmp->next;
@@ -136,6 +136,7 @@ int main() {
   head = append(head, 2);
   head = insert_at(head, 2, 20);
   head = delete_at(head, 2);
+  head = delete_value(head, 10);
 
   node_t *tmp = head;
   while (tmp != NULL) {
