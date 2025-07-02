@@ -60,13 +60,20 @@ node_t *insert_at(node_t *head, int position, int val) {
     return NULL;
   }
   node_t *tmp = head;
-  for (int i = 0; i <= position; i++) {
+  for (int i = 0; i < position; i++) {
     tmp = tmp->next;
   }
+  new_node->next = tmp->next;
   tmp->next = new_node;
+
+  if (tmp->next != NULL) {
+    tmp->next->prev = new_node;
+  }
   if (tmp != NULL) {
     new_node->prev = tmp;
   }
+
+
   return head;
 }
 
@@ -76,7 +83,7 @@ int main() {
   head = prepend(head, 10);
   head = prepend(head, 15);
   head = append(head, 2);
-  head = insert_at(head, 1, 20);
+  head = insert_at(head, 2, 20);
 
   node_t *tmp = head;
   while (tmp != NULL) {
