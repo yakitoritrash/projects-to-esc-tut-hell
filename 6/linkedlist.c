@@ -99,8 +99,13 @@ node_t *delete_at(node_t *head, int position) {
   }
   if (tmp == NULL || tmp->next == NULL) {
     printf("Out of bound.\n");
+    return head;
   }
   node_t *to_delete = tmp;
+  tmp->prev->next = tmp->next;
+  tmp->next->prev = tmp->prev;
+  free(to_delete);
+
   return head;
 }
 
@@ -111,7 +116,7 @@ int main() {
   head = prepend(head, 15);
   head = append(head, 2);
   head = insert_at(head, 2, 20);
-  head = delete_at(head, 2);
+  head = delete_at(head, 9);
 
   node_t *tmp = head;
   while (tmp != NULL) {
