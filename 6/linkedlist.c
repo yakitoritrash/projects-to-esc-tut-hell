@@ -25,22 +25,23 @@ node_t *prepend(node_t *head, int val) {
     return head;
   }
   new_node->next = head;
-  if (new_node->next) {
-    new_node->next->prev = new_node;
+  if (head != NULL) {
+    head->prev = new_node;
   }
   head = new_node;
-  return head;
+  return new_node;
 }
 
 int main() {
   node_t *head = NULL;
-  create_node(5);
-  prepend(head, 10);
-  prepend(head, 15);
+  head = create_node(5);
+  head = prepend(head, 10);
+  head = prepend(head, 15);
 
   node_t *tmp = head;
   while (tmp != NULL) {
     printf("%d -> ", tmp->value);
     tmp = tmp->next;
   }
+  printf("NULL");
 }
