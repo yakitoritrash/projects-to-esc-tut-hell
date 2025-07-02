@@ -72,9 +72,11 @@ node_t *insert_at(node_t *head, int position, int val) {
   if (tmp != NULL) {
     new_node->prev = tmp;
   }
-
-
   return head;
+}
+
+node_t *delete_at(node_t *head, int position) {
+
 }
 
 int main() {
