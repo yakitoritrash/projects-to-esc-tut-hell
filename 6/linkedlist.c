@@ -109,6 +109,25 @@ node_t *delete_at(node_t *head, int position) {
   return head;
 }
 
+node_t *delete_value(node_t *head, int val) {
+  if (head->value == val) {
+    node_t *to_delete = head;
+    head = head->next;
+    free (to_delete);
+  }
+  node_t *tmp = head;
+  while (tmp->next->value == val && tmp->next != NULL) {
+    tmp = tmp->next;
+  }
+  node_t *to_delete = tmp->next;
+  tmp->next = to_delete->next;
+  if (to_delete->next != NULL) {
+    to_delete->next->prev = tmp;
+  }
+  free (to_delete);
+  return head;
+}
+
 int main() {
   node_t *head = NULL;
   head = create_node(5);
@@ -116,7 +135,7 @@ int main() {
   head = prepend(head, 15);
   head = append(head, 2);
   head = insert_at(head, 2, 20);
-  head = delete_at(head, 9);
+  head = delete_at(head, 2);
 
   node_t *tmp = head;
   while (tmp != NULL) {
