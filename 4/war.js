@@ -96,8 +96,8 @@ function war(topCard1, topCard2) {
   table2.push(player2.drawCard())
   table2.push(player2.drawCard())
   if (table1[2] > table2[2]) {
-    player1.hand.push(table1)
-    player1.hand.push(table2)
+    player1.hand.push(table1);
+    player1.hand.push(table2);
     player1.hand.push(topCard2);
   }
   if (table1[2] < table2[2]) {
