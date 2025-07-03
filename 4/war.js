@@ -70,19 +70,13 @@ while (player1.hasCards() && player2.hasCards()) {
   if (topCard1.value > topCard2.value) {
     player2.hand.pop(topCard2);
     player1.hand.push(topCard1);
-    console.log(player1.hand);
-    console.log(player2.hand);
   }
   if (topCard2.value > topCard1.value) {
     player1.hand.pop(topCard1);
     player2.hand.push(topCard2);
-    console.log(player1.hand);
-    console.log(player2.hand);
   }
   if (topCard1.value === topCard2.value) {
     war(topCard1, topCard2);
-    console.log(player1.hand);
-    console.log(player2.hand);
   }
 }
 
