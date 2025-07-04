@@ -46,7 +46,6 @@ class Player {
     return this.hand.length;
   }
 }
-
 function playWar() {
   const deck = new Deck();
   const player1 = new Player('jon');
