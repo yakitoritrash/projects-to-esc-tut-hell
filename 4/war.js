@@ -1,17 +1,5 @@
-//war game
-//make a deck of 52 cards, A, K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2 (4 sets)
-//shuffle the deck
-//two players should have 26 cards each
-//both players flip the last card (at the count of 3)
-//the one with the higher card gets both the card on the table
-//if both the cards have the same value (it is war) each player put in 3 more cards and then the fourth card is compared, whoever has the higher card gets all of them 10 cards. If a player does not have enough cards to play the war, their last card is considered in the war
-//
-//
-//card - number / type;
-//
-
-class Cards {
-  constructor (value, suit) {
+class Card {
+  constructor(value, suit) {
     this.value = value;
     this.suit = suit;
   }
@@ -23,17 +11,19 @@ class Deck {
     const suits = ['hearts', 'spades', 'clubs', 'diamonds'];
     for (let suit of suits) {
       for (let value = 2; value <= 14; value++) {
-        this.cards.push(new Cards(value, suit));
+        this.cards.push(new Card(value, suit));
       }
     }
-    this.Shuffle();
+    this.shuffle();
   }
-  Shuffle() {
+  
+  shuffle() {
     let currentIndex = this.cards.length;
     while (currentIndex != 0) {
       let randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      [this.cards[currentIndex], this.cards[randomIndex]] = [this.cards[randomIndex], this.cards[currentIndex]];
+      [this.cards[currentIndex], this.cards[randomIndex]] = 
+        [this.cards[randomIndex], this.cards[currentIndex]];
     }
   }
 }
@@ -43,12 +33,15 @@ class Player {
     this.name = name;
     this.hand = [];
   }
+  
   drawCard() {
     return this.hand.pop();
   }
+  
   hasCards() {
     return this.hand.length > 0;
   }
+  
   cardCount() {
     return this.hand.length;
   }
@@ -59,47 +52,54 @@ function playWar() {
   const player1 = new Player('jon');
   const player2 = new Player('ruth');
 
-  player1.hand = (deck.cards.slice(0, 26))
-  player2.hand = (deck.cards.slice(26, 52))
+  player1.hand = deck.cards.slice(0, 26);
+  player2.hand = deck.cards.slice(26, 52);
 
   let round = 1;
 
   while (player1.hasCards() && player2.hasCards()) {
     console.log(`\nRound ${round++}`);
     console.log(`${player1.name}: ${player1.cardCount()} cards | ${player2.name}: ${player2.cardCount()} cards`);
-    const topCard1 = player1.drawCard();
-    const topCard2 = player2.drawCard();
-    console.log(`${(player1.name)} plays ${cardValueToString(topCard1.value)} of ${(topCard1.suit)}`);
-    console.log(`${(player2.name)} plays ${cardValueToString(topCard1.value)} of ${(topCard2.suit)}`);
-
-    const cardsInPlay = [topCard1, topCard2];
-    let currentCard1 = topCard1;
-    let currentCard2 = topCard2;
-
-    while (currentCard1.value === currentCard2.value) {
+    
+    const card1 = player1.drawCard();
+    const card2 = player2.drawCard();
+    
+    console.log(`${player1.name} plays: ${cardValueToString(card1.value)} of ${card1.suit}`);
+    console.log(`${player2.name} plays: ${cardValueToString(card2.value)} of ${card2.suit}`);
+    
+    const cardsInPlay = [card1, card2];
+    
+    while (card1.value === card2.value) {
       console.log("WAR!");
-
-      const warCard1 = drawWarCards(player1);
-      const warCard2 = drawWarCards(player2);
-
-      cardsInPlay.push(...warCard1, ...warCard2);
-
-      currentCard1 = player1.drawCard();
-      currentCard2 = player2.drawCard();
-
+      
+      // Check if players have enough cards for war
+      const warCards1 = drawWarCards(player1);
+      const warCards2 = drawWarCards(player2);
+      
+      cardsInPlay.push(...warCards1, ...warCards2);
+      
+      // Draw comparison card
+      const warCard1 = player1.drawCard();
+      const warCard2 = player2.drawCard();
+      
       if (!warCard1 || !warCard2) break;
+      
+      cardsInPlay.push(warCard1, warCard2);
       console.log(`${player1.name} wars with: ${cardValueToString(warCard1.value)} of ${warCard1.suit}`);
       console.log(`${player2.name} wars with: ${cardValueToString(warCard2.value)} of ${warCard2.suit}`);
-
+      
       if (warCard1.value !== warCard2.value) {
-        topCard1.value = warCard1.value;
-        topCard2.value = warCard2.value;
+        card1.value = warCard1.value;
+        card2.value = warCard2.value;
       }
     }
-    if (topCard1.value > topCard2.value) {
+    
+    // Determine winner of the round
+    if (card1.value > card2.value) {
       console.log(`${player1.name} wins the round!`);
+      // Add all cards to the bottom of winner's deck
       player1.hand = [...cardsInPlay, ...player1.hand];
-    } else if (topCard2.value > topCard1.value) {
+    } else if (card2.value > card1.value) {
       console.log(`${player2.name} wins the round!`);
       player2.hand = [...cardsInPlay, ...player2.hand];
     } else {
@@ -107,6 +107,7 @@ function playWar() {
     }
   }
 
+  // Game over
   if (player1.hasCards()) {
     console.log(`${player1.name} wins the game!`);
   } else {
@@ -133,4 +134,5 @@ function cardValueToString(value) {
   return faceCards[value] || value.toString();
 }
 
+// Start the game
 playWar();
