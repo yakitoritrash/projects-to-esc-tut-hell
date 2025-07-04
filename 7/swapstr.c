@@ -8,18 +8,18 @@ void str_swap(char **a, char **b) {
 }
 
 int main() {
-  char *a = malloc(2 * sizeof(char));
-  char *b = malloc(2 * sizeof(char));
+  char *a = malloc(100 * sizeof(char));
+  char *b = malloc(100 * sizeof(char));
 
   if (a == NULL || b == NULL) {
     printf("Memory allocation failed.");
     return 1;
   }
-  scanf("%c", a);
-  scanf("%c", b);
-  printf("%c %c\n", *a, *b);
+  scanf("%99s\n", a);
+  scanf("%99s", b);
+  printf("%s %s\n", a, b);
   str_swap(&a, &b);
-  printf("%c %c", *a, *b);
+  printf("%s %s", a, b);
   free(a);
   free(b);
   return 0;
