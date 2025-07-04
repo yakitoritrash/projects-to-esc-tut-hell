@@ -54,52 +54,76 @@ class Player {
   }
 }
 
-const deck = new Deck();
-const player1 = new Player('jon');
-const player2 = new Player('ruth');
+function playWar() {
+  const deck = new Deck();
+  const player1 = new Player('jon');
+  const player2 = new Player('ruth');
 
-player1.hand = (deck.cards.slice(0, 26))
-player2.hand = (deck.cards.slice(26, 52))
+  player1.hand = (deck.cards.slice(0, 26))
+  player2.hand = (deck.cards.slice(26, 52))
 
+  let round = 1;
 
-while (player1.hasCards() && player2.hasCards()) {
-  const topCard1 = player1.drawCard();
-  const topCard2 = player2.drawCard();
-  console.log(`${JSON.stringify(player1.name)} : ${JSON.stringify(topCard1)}`);
-  console.log(`${JSON.stringify(player2.name)} : ${JSON.stringify(topCard2)}`);
-  if (topCard1.value > topCard2.value) {
-    player2.hand.pop(topCard2);
-    player1.hand.push(topCard1);
+  while (player1.hasCards() && player2.hasCards()) {
+    console.log(`\nRound ${round++}`);
+    console.log(`${player1.name}: ${player1.cardCount()} cards | ${player2.name}: ${player2.cardCount()} cards`);
+    const topCard1 = player1.drawCard();
+    const topCard2 = player2.drawCard();
+    console.log(`${JSON.stringify(player1.name)} : ${JSON.stringify(topCard1)}`);
+    console.log(`${JSON.stringify(player2.name)} : ${JSON.stringify(topCard2)}`);
+
+    const cardsInPlay = [topCard1, topCard2];
+
+    while (topCard1.value === topCard2.value) {
+      console.log("WAR!");
+
+      const warCard1 = drawWarCards(player1);
+      const warCard2 = drawWarCards(player2);
+
+      if (!warCard1 || !warCard2) break;
+      console.log(`${player1.name} wars with: ${cardValueToString(warCard1.value)} of ${warCard1.suit}`);
+      console.log(`${player2.name} wars with: ${cardValueToString(warCard2.value)} of ${warCard2.suit}`);
+
+      if (warCard1.value !== warCard2.value) {
+        topCard1.value = warCard1.value;
+        topCard2.value = warCard2.value;
+      }
+    }
+    if (topCard1.value > topCard2.value) {
+      console.log(`${player1.name} wins the round!`);
+      player1.hand = [...cardsInPlay, ...player1.hand];
+    } else if (topCard2.value > topCard1.value) {
+      console.log(`${player2.name} wins the round!`);
+      player2.hand = [...cardsInPlay, ...player2.hand];
+    } else {
+      console.log("Total war - cards remain in play");
+    }
   }
-  if (topCard2.value > topCard1.value) {
-    player1.hand.pop(topCard1);
-    player2.hand.push(topCard2);
-  }
-  if (topCard1.value === topCard2.value) {
-    war(topCard1, topCard2);
+
+  if (player1.hasCards()) {
+    console.log(`${player1.name} wins the game!`);
+  } else {
+    console.log(`${player2.name} wins the game!`);
   }
 }
 
-function war(topCard1, topCard2) {
-  table1 = [];
-  table1.push(player1.drawCard())
-  table1.push(player1.drawCard())
-  table1.push(player1.drawCard())
-  table2 = [];
-  table2.push(player2.drawCard())
-  table2.push(player2.drawCard())
-  table2.push(player2.drawCard())
-  if (table1[2] > table2[2]) {
-    player1.hand.push(table1);
-    player1.hand.push(table2);
-    player1.hand.push(topCard2);
+function drawWarCards(player) {
+  const cards = [];
+  const cardsToDraw = Math.min(3, player.cardCount());
+  for (let i = 0; i < cardsToDraw; i++) {
+    cards.push(player.drawCard());
   }
-  if (table1[2] < table2[2]) {
-    player2.hand.push(table1)
-    player2.hand.push(table2)
-    player2.hand.push(topCard1);
-  }
-  if (table1[2] = table2[2]) {
-    war();
-  }
+  return cards;
 }
+
+function cardValueToString(value) {
+  const faceCards = {
+    11: 'J',
+    12: 'Q',
+    13: 'K',
+    14: 'A'
+  };
+  return faceCards[value] || value.toString();
+}
+
+playWar();
