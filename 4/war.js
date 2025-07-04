@@ -69,16 +69,23 @@ function playWar() {
     console.log(`${player1.name}: ${player1.cardCount()} cards | ${player2.name}: ${player2.cardCount()} cards`);
     const topCard1 = player1.drawCard();
     const topCard2 = player2.drawCard();
-    console.log(`${JSON.stringify(player1.name)} : ${JSON.stringify(topCard1)}`);
-    console.log(`${JSON.stringify(player2.name)} : ${JSON.stringify(topCard2)}`);
+    console.log(`${(player1.name)} plays ${cardValueToString(topCard1.value)} of ${(topCard1.suit)}`);
+    console.log(`${(player2.name)} plays ${cardValueToString(topCard1.value)} of ${(topCard2.suit)}`);
 
     const cardsInPlay = [topCard1, topCard2];
+    let currentCard1 = topCard1;
+    let currentCard2 = topCard2;
 
-    while (topCard1.value === topCard2.value) {
+    while (currentCard1.value === currentCard2.value) {
       console.log("WAR!");
 
       const warCard1 = drawWarCards(player1);
       const warCard2 = drawWarCards(player2);
+
+      cardsInPlay.push(...warCard1, ...warCard2);
+
+      currentCard1 = player1.drawCard();
+      currentCard2 = player2.drawCard();
 
       if (!warCard1 || !warCard2) break;
       console.log(`${player1.name} wars with: ${cardValueToString(warCard1.value)} of ${warCard1.suit}`);
