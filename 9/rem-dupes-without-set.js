@@ -5,6 +5,7 @@ function remDupes (arr) {
   }
   console.log(arr);
   console.log(map);
+  console.log(Array.from(map));
 }
 
 remDupes([3, 4, 5, 6, 7, 3, 1, 1]);
