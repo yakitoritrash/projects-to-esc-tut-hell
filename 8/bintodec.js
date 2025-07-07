@@ -4,4 +4,4 @@ function bintodecimal(bin) {
   return digit;
 }
 
-bintodecimal(1001);
+bintodecimal(1100110001);
