@@ -1,9 +1,11 @@
 function sum(num) {
-  if (num === 1) {
-    return 1;
+  res = 0;
+  while (num >= 0) {
+    res += num;
+    num--;
   }
-  console.log(num + sum(num - 1));
-  return num + sum(num - 1);
+  console.log(res);
+  return res;
 }
 
-sum(10);
+sum(5);
