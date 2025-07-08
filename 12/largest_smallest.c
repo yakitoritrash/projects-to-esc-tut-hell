@@ -3,22 +3,18 @@
 
 int* largest_smallest(int arr[], int size) {
   int* res = malloc(2 * sizeof(int));
-  int max; 
-  int min; 
+  int max = 0; 
+  int min = 123*123; 
+  for (int i = 0; i < size; i++) {
+    if (arr[i] >= max) {
+      max = arr[i];
+    }
+    if (arr[i] <= min) {
+      min = arr[i];
+    }
+  }
   res[0] = max;
   res[1] = min;
-  int l = 0;
-  int r  = 0;
-  for (int i = 0; i < size; i++) {
-    if (arr[l] > max) {
-      max = arr[l];
-    }
-    l++;
-    if (arr[r] < min) {
-      min = arr[r];
-    }
-    r++;
-  }
   return res;
 }
 
@@ -29,6 +25,7 @@ int main() {
   for (int i = 0; i < size; i++) {
     printf("%d ", arr[i]);
   }
+  printf("\n");
   for (int i = 0; i < 2; i++) {
     printf("%d ", res[i]);
   }
