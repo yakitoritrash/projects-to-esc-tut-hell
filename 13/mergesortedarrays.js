@@ -1,7 +1,7 @@
 function mergeSorted(arr1, arr2) {
-  arr3 = [];
+  let arr3 = [];
   if (arr1.length > arr2.length) {
-    for (let i = 0; i < arr1.length - 1; i++) {
+    for (let i = 0; i <= arr1.length - 1; i++) {
       if (arr1[i] <= arr2[i]) {
         arr3.push(arr1[i]);
         arr3.push(arr2[i]);
@@ -12,7 +12,7 @@ function mergeSorted(arr1, arr2) {
     }
   }
   if (arr2.length >= arr1.length) {
-    for (let i = 0; i < arr2.length - 1; i++) {
+    for (let i = 0; i <= arr2.length - 1; i++) {
       if (arr1[i] <= arr2[i]) {
         arr3.push(arr1[i]);
         arr3.push(arr2[i]);
@@ -27,4 +27,4 @@ function mergeSorted(arr1, arr2) {
   console.log(arr3);
 }
 
-mergeSorted([2, 4, 6, 7], [3, 5, 8, 9, 10]);
+mergeSorted([2, 4, 6, 7, 11, 12], [3, 5, 7, 8, 9, 10]);
