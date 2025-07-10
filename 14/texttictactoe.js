@@ -39,6 +39,19 @@ function tictactoe() {
     if (board[0][2] !== 0 && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
       return board[0][2];
     }
+    let isTie = true;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (board[i][j] === ' ') {
+          isTie = false;
+          break;
+        }
+      }
+    }
+    if (isTie) {
+      return 'T';
+    }
+    return null;
   }
 
   printBoard();
