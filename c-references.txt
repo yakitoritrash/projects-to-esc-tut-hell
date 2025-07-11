@@ -1,0 +1,83 @@
+File Structure
+
+#include <stdio.h>  // input/output
+#include <stdlib.h> // malloc, free, exit
+#include <string.h> // strcpy, strlen, etc.
+
+int main() {
+    printf("Hello\n");
+    return 0;
+}
+
+Data Types
+
+int     // 4 bytes
+float   // 4 bytes
+double  // 8 bytes
+char    // 1 byte
+long    // 8 bytes
+
+Storage & Modifiers
+
+const int x = 10;       // constant
+static int count = 0;   // retains value across calls
+
+Control Flow
+
+if (x > 0) { ... }
+else if (...) { ... }
+
+for (int i = 0; i < 10; i++) { ... }
+
+while (condition) { ... }
+
+do { ... } while (...);
+
+Strings
+
+char str[] = "hello";
+char *ptr = "world";
+
+strcpy(dest, src);
+strlen(str);
+strcmp(a, b);
+strcat(a, b);
+
+Pointers
+
+int x = 10;
+int *p = &x;
+*p = 20;
+
+int **pp = &p;
+
+Arrays
+
+int a[5] = {1,2,3,4,5};
+a[0] = 10;
+int len = sizeof(a) / sizeof(a[0]);
+
+Memory Management
+
+int *ptr = malloc(sizeof(int) * 10);
+free(ptr);
+
+Structs
+
+struct Point {
+    int x, y;
+};
+
+struct Point p = {1, 2};
+
+Functions
+
+int add(int a, int b) {
+    return a + b;
+}
+
+Debugging
+
+valgrind ./program
+gdb ./program
+

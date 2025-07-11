@@ -1,0 +1,80 @@
+Syntax & Types
+
+let a = 10;
+const PI = 3.14;
+var name = "JS";
+
+typeof a      // number
+typeof name   // string
+typeof null   // object
+
+Loops
+
+for (let i = 0; i < 5; i++) { ... }
+while (cond) { ... }
+do { ... } while (cond);
+
+for (const x of arr) { ... }
+for (const k in obj) { ... }
+
+Arrays
+
+let arr = [1, 2, 3];
+
+arr.push(4);
+arr.pop();
+arr.length;
+arr.map(x => x * 2);
+arr.filter(x => x > 1);
+
+Objects
+
+let user = {
+    name: "Alice",
+    age: 20
+};
+
+user.name;
+user["age"];
+
+Functions
+
+function add(a, b) {
+    return a + b;
+}
+
+const mul = (x, y) => x * y;
+
+Conditionals
+
+if (x > 5) { ... }
+else if (...) { ... }
+else { ... }
+
+x > 5 ? "yes" : "no";
+
+JSON
+
+let obj = JSON.parse('{"x":1}');
+let str = JSON.stringify({a:1});
+
+File I/O (Node.js)
+
+const fs = require('fs');
+
+let data = fs.readFileSync('file.txt', 'utf-8');
+fs.writeFileSync('out.txt', 'hello');
+
+CLI Input (Node.js)
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question("Enter name: ", (answer) => {
+    console.log(`Hello ${answer}`);
+    rl.close();
+});
