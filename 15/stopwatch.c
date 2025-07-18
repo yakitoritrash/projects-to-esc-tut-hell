@@ -1,10 +1,26 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <string.h>
 #include <termios.h>
 #include <time.h>
 #include <sys/select.h>
 
+void timer(int seconds) {
+  int i;
+  for (int i = 0; i < seconds; i++) {
+    printf("\rTime remaining: %d seconds [", seconds - i);
+    int j;
+    for (j = 0; j < (i * 20 / seconds); j++) {
+      printf("-");
+    }
+    printf(">");
+    for (j = (i * 20 / seconds); j < 20; j++) {
+      printf(" ");
+    }
+    printf("] %d%%", (i * 100) / seconds);
+    fflush(stdout);
+    sleep(1);
+  }
+}
 int kbhit() {
   struct timeval tv = { 0L, 0L };
   fd_set fds;
@@ -42,8 +58,27 @@ void stopwatch() {
 }
 
 int main() {
-  printf("type 'start' to start\n");
-  printf("type 'pause' to pause\n");
-  printf("type 'stop' to stop\n");
-  stopwatch();
+  char choice;
+  while (1) {
+    printf("'1' for timer, '2' for stopwatch; choose");
+    scanf("%c", &choice);
+    switch(choice) {
+      case '1': {
+        int seconds;
+        printf("Enter the number of seconds for the timer: ");
+        scanf("%d", &seconds);
+        timer(seconds);
+        break;
+      }
+      case '2': {
+        stopwatch();
+        break;
+      }
+      case '3':
+        return 0;
+      default:
+        printf("Invalid choice. Please try again.\n");
+        break;
+    }
+  }
 }
