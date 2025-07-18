@@ -11,9 +11,9 @@ int main() {
     printf("Guess the number: \n");
     scanf("%d\n", &guess);
     if (guess > value) {
-      printf("too high\n");
+      printf("%d too high\n", guess);
     } else if (guess < value) {
-      printf("too low\n");
+      printf("%d too low\n", guess);
     } else if (guess == value) {
       printf("That's right %d is the number.\n", value);
     }
