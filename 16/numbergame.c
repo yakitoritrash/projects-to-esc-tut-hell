@@ -2,7 +2,11 @@
 #include <stdlib.h>
 
 int main() {
-  int value = rand();
-  printf("The random value is: %d", value);
+  int upper_bound = 100;
+  int lower_bound= 1;
+  int value = rand() % (upper_bound - lower_bound + 1) + lower_bound;
+  printf(" %d", value);
+  int j = rand();
+  printf("%d", j);
   return 0;
 }
