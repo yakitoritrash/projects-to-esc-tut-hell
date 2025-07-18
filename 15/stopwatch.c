@@ -15,7 +15,7 @@ int kbhit() {
 void stopwatch() {
   int i = 0;
   char choice;
-  printf("p to pause the stopwatch.\n c to continue. \n r to reset the stopwatch");
+  printf("p to pause the stopwatch.\n c to continue. \n r to reset the stopwatch.\n");
   while (1) {
     printf("\rTime elapsed: %d seconds", i);
     fflush(stdout);
