@@ -21,6 +21,23 @@ void stopwatch() {
     fflush(stdout);
     sleep(1);
     i++;
+    if (kbhit()) {
+      choice = getchar();
+      if (choice == 'p') {
+        printf("\nStopwatch paused. Press 'c' to continue. 'r' to reset or 'q' to quit.\n");
+        while (1) {
+          choice = getchar();
+          if (choice == 'c') {
+            break;
+          } else if (choice == 'r') {
+            i = 0;
+            break;
+          } else if (choice == 'q') {
+            return;
+          }
+        }
+      }
+    }
   }
 }
 
