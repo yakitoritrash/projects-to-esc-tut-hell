@@ -4,7 +4,7 @@
 
 int main() {
   srand(time(NULL));
-  int upper_bound = 1;
+  int upper_bound = 10;
   int value = rand() % (upper_bound + 1);
   int guess;
   while (guess != value) {
@@ -14,7 +14,7 @@ int main() {
       printf("too high\n");
     } else if (guess < value) {
       printf("too low\n");
-    } else {
+    } else if (guess == value) {
       printf("That's right %d is the number.\n", value);
     }
   }
