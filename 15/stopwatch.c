@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <termios.h>
 #include <time.h>
 #include <sys/select.h>
 
@@ -12,15 +13,14 @@ int kbhit() {
   return select(1, &fds, NULL, NULL, &tv);
 }
 void stopwatch() {
-  char* close = malloc(sizeof(char));
-  while (strcmp(close, "c") == 0) {
-    scanf("%s", close);
-    char* input = malloc(sizeof(char));
-    scanf("%s", input);
-    printf("%s", input);
-    if (strcmp(input, "s") == 0) {
-      
-    }
+  int i = 0;
+  char choice;
+  printf("p to pause the stopwatch.\n c to continue. \n r to reset the stopwatch");
+  while (1) {
+    printf("\rTime elapsed: %d seconds", i);
+    fflush(stdout);
+    sleep(1);
+    i++;
   }
 }
 
