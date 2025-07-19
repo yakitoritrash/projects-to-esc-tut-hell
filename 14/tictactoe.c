@@ -1,14 +1,9 @@
 #include <stdio.h>
 
-char board[] =
-  {' ', ' ', ' ',
-   ' ', ' ', ' ',
-   ' ', ' ', ' ',};
-int size = sizeof(board) / sizeof(board[0]);
 
-void tictactoe() {
+void tictactoe(char board[], int size) {
   for (int i = 0; i < size; i++) {
-    while (board[i] != ' ') {
+    while (board[i] == ' ') {
       int player1_choice;
       scanf("%d", &player1_choice);
       if (board[player1_choice - 1] == ' ') {
@@ -26,7 +21,7 @@ void tictactoe() {
     }
   }
 }
-void printboard() {
+void printboard(char board[]) {
   for (int i = 0; i <= 2; i++) {
     if (i == 2) {
       printf("%c", board[2]);
@@ -54,7 +49,12 @@ void printboard() {
 }
 
 int main() {
-  printboard();
-  tictactoe();
-  printboard();
+char board[] =
+  {' ', ' ', ' ',
+   ' ', ' ', ' ',
+   ' ', ' ', ' ',};
+int size = sizeof(board) / sizeof(board[0]);
+  printboard(board);
+  tictactoe(board, size);
+  printboard(board);
 }
