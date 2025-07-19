@@ -13,10 +13,10 @@ void timer(int seconds) {
       printf("-");
     }
     printf(">");
-    for (j = (i * 20 / seconds); j < 20; j++) {
+    for (j = (i * 20 / seconds); j <= 20; j++) {
       printf(" ");
     }
-    printf("] %d%%\n", (i * 100) / seconds);
+    printf("] %d%%", (i * 100) / seconds);
     fflush(stdout);
     sleep(1);
   }
@@ -60,7 +60,7 @@ void stopwatch() {
 int main() {
   char choice;
   while (1) {
-    printf("'1' for timer, '2' for stopwatch; choose: \n");
+    printf("\n'1' for timer, '2' for stopwatch; choose: ");
     scanf("%c", &choice);
     switch(choice) {
       case '1': {
