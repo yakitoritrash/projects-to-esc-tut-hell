@@ -8,10 +8,14 @@ char board[] =
 int size = sizeof(board) / sizeof(board[0]);
 
 void tictactoe() {
-
+  int choice;
+  scanf("%d", &choice);
 }
 void printboard() {
   for (int i = 0; i < 3; i++) {
+    if (i == 2) {
+      printf("%c ", board[2]);
+    }
     printf("%c | ", board[i]);
   }
   printf("\n---------------\n");
