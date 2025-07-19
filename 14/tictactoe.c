@@ -14,11 +14,11 @@ void printboard() {
   for (int i = 0; i < 3; i++) {
     printf("%c | ", board[i]);
   }
-  printf("\n");
+  printf("\n---------------\n");
   for (int i = 3; i < 6; i++) {
     printf("%c | ", board[i]);
   }
-  printf("\n");
+  printf("\n---------------\n");
   for (int i = 6; i < 9; i++) {
     printf("%c | ", board[i]);
   }
