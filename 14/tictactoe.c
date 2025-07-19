@@ -2,9 +2,9 @@
 
 
 char board[] =
-  {'X', 'X', 'X',
-   'X', 'X', 'X',
-   'X', 'X', 'X',};
+  {' ', ' ', ' ',
+   ' ', ' ', ' ',
+   ' ', ' ', ' ',};
 int size = sizeof(board) / sizeof(board[0]);
 
 void tictactoe() {
