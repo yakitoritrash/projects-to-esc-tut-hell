@@ -11,13 +11,8 @@ void tictactoe() {
   int player1_choice;
   scanf("%d", &player1_choice);
   if (board[player1_choice - 1] == ' ') {
-    board[player1_choice - 1] == 'X';
+    board[player1_choice - 1] = 'X';
   }
-
-  board[player1_choice - 1] = 'X';
-  int player2_choice;
-  scanf("%d", &player2_choice);
-  board[player1_choice - 1] = 'X';
 }
 void printboard() {
   for (int i = 0; i <= 2; i++) {
