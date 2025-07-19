@@ -60,7 +60,7 @@ void stopwatch() {
 int main() {
   char choice;
   while (1) {
-    printf("'1' for timer, '2' for stopwatch; choose");
+    printf("'1' for timer, '2' for stopwatch; choose: \n");
     scanf("%c", &choice);
     switch(choice) {
       case '1': {
