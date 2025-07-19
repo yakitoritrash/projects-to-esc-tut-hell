@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 char board[] =
   {' ', ' ', ' ',
    ' ', ' ', ' ',
@@ -8,10 +7,23 @@ char board[] =
 int size = sizeof(board) / sizeof(board[0]);
 
 void tictactoe() {
-  int player1_choice;
-  scanf("%d", &player1_choice);
-  if (board[player1_choice - 1] == ' ') {
-    board[player1_choice - 1] = 'X';
+  for (int i = 0; i < size; i++) {
+    while (board[i] != ' ') {
+      int player1_choice;
+      scanf("%d", &player1_choice);
+      if (board[player1_choice - 1] == ' ') {
+        board[player1_choice - 1] = 'X';
+      } else {
+        printf("Invalid move.\n");
+      }
+      int player2_choice;
+      scanf("%d", &player2_choice);
+      if (board[player2_choice - 1] == ' ') {
+        board[player2_choice - 1] = 'O';
+      } else {
+        printf("Invalid move.\n");
+      }
+    }
   }
 }
 void printboard() {
