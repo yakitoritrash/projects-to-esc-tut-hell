@@ -16,7 +16,7 @@ void timer(int seconds) {
     for (j = (i * 20 / seconds); j < 20; j++) {
       printf(" ");
     }
-    printf("] %d%%", (i * 100) / seconds);
+    printf("] %d%%\n", (i * 100) / seconds);
     fflush(stdout);
     sleep(1);
   }
