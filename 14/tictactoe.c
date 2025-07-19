@@ -11,8 +11,14 @@ void tictactoe() {
 
 }
 void printboard() {
-  for (int i = 0; i < size; i++) {
-    printf("%c | ", board[i]);
+  for (int i = 0; i < 3; i++) {
+    printf("%c | \n", board[i]);
+  }
+  for (int i = 3; i < 6; i++) {
+    printf("%c | \n", board[i]);
+  }
+  for (int i = 6; i < 9; i++) {
+    printf("%c | \n", board[i]);
   }
 }
 
