@@ -28,10 +28,6 @@ void tictactoe(char board[], int size, int player) {
       }
     }
   }
-//  char board[] =
-//    {'0', '1', '2',
-//     '3', '4', '5',
-//     '6', '7', '8',};
 }
 void printboard(char board[]) {
   for (int i = 0; i <= 2; i++) {
@@ -94,16 +90,9 @@ char board[] =
    ' ', ' ', ' ',};
 int size = sizeof(board) / sizeof(board[0]);
   for (int i = 0; i <= size - 1; i++) {
-    while (board[i] == ' ' || !winnerfunc(board)) {
+    while (!winnerfunc(board)) {
       printboard(board);
       tictactoe(board, size, 1);
-      winnerfunc(board);
-      printf("\n");
-      printboard(board);
-      tictactoe(board, size, 2);
-      winnerfunc(board);
-      printf("\n");
     }
   }
-  printboard(board);
 }
