@@ -62,21 +62,17 @@ bool winnerfunc(char board[]) {
   || board[0] != ' ' && board[0] == board[4] && board[4] == board[8]) {
     printf("%c wins.\n", board[0]);
     return true;
-  }
-  if (board[1] != ' ' && board[1] == board[4] && board[4] == board[7]) {
+  } else if (board[1] != ' ' && board[1] == board[4] && board[4] == board[7]) {
     printf("%c wins.\n", board[1]);
     return true;
-  }
-  if (board[2] != ' ' && board[2] == board[5] && board[5] == board[8]
+  } else if (board[2] != ' ' && board[2] == board[5] && board[5] == board[8]
   || board[2] != ' ' && board[2] == board[4] && board[4] == board[6]) {
     printf("%c wins.\n", board[2]);
     return true;
-  }
-  if (board[3] != ' ' && board[3] == board[4] && board[4] == board[5]) {
+  } else if (board[3] != ' ' && board[3] == board[4] && board[4] == board[5]) {
     printf("%c wins.\n", board[3]);
     return true;
-  }
-  if (board[6] != ' ' && board[6] == board[7] && board[7] == board[8]) {
+  } else if (board[6] != ' ' && board[6] == board[7] && board[7] == board[8]) {
     printf("%c wins.\n", board[6]);
     return true;
   }
@@ -93,6 +89,15 @@ int size = sizeof(board) / sizeof(board[0]);
     while (!winnerfunc(board)) {
       printboard(board);
       tictactoe(board, size, 1);
+      printboard(board);
+      if (winnerfunc(board)) {
+        break;
+      }
+      tictactoe(board, size, 2);
+      if (winnerfunc(board)) {
+        break;
+      }
+      winnerfunc(board);
     }
   }
 }
