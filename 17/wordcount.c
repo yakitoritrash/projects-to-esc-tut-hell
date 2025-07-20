@@ -7,7 +7,6 @@ int main() {
   while ((ch = fgetc(fptr)) != EOF) {
     putchar(ch);
   }
-  printf("%d", ch);
   fclose(fptr);
   return 0;
 }
