@@ -1,40 +1,10 @@
-
-       The read utility shall read a single logical line from standard input into one or more
-       shell variables.
-
-       By  default,  unless  the  -r  option is specified, <backslash> shall act as an escape
-       character. An unescaped <backslash> shall preserve the literal value of the  following
-       character, with the exception of a <newline>.  If a <newline> follows the <backslash>,
-       the  read utility shall interpret this as line continuation. The <backslash> and <new‐
-       line> shall be removed before splitting the input into  fields.  All  other  unescaped
-       <backslash> characters shall be removed after splitting the input into fields.
-
-       If  standard  input  is  a terminal device and the invoking shell is interactive, read
-       shall prompt for a continuation line when it reads an input line ending with a  <back‐
-       slash> <newline>, unless the -r option is specified.
-
-       The  terminating  <newline>  (if  any) shall be removed from the input and the results
-       shall be split into fields as in the shell for the results of parameter expansion (see
-       Section 2.6.5, Field Splitting); the first field shall be assigned to the first  vari‐
-       able  var,  the second field to the second variable var, and so on. If there are fewer
-       fields than there are var operands, the remaining vars shall be set to empty  strings.
-       If  there  are fewer vars than fields, the last var shall be set to a value comprising
-       the following elements:
-
-        *  The field that corresponds to the last var in the normal assignment  sequence  de‐
-           scribed above
-
-        *  The delimiter(s) that follow the field corresponding to the last var
-
-        *  The remaining fields and their delimiters, with trailing IFS white space ignored
-
-       The  setting of variables specified by the var operands shall affect the current shell
-       execution environment; see Section 2.12, Shell Execution Environment.  If it is called
-       in a subshell or separate utility execution environment, such as one of the following:
-
-           (read foo)
-           nohup read ...
-           find . -exec read ... \;
-
-       it shall not affect the shell variables in the caller's environment.
-
+The Arch community is a technical community whose shared purpose is to support and enhance Arch Linux.
+Arch Linux is a community-driven distribution; the developers, support staff and people who provide assistance in the various fora all do so in their own time, motivated by a shared desire to provide a minimal base system that can be configured by an individual to suit their specific requirements. The code of conduct here has been developed over a number of years and reflects the community’s ethos of a functional support system with a high signal-to-noise ratio and an explicit expectation of self-sufficiency, willingness to learn and contribution.
+Familiarising yourself with the principles and guidelines here is both a courtesy to the community and an effective way of making your initial interactions with other Arch Linux users mutually beneficial.
+The rules laid out in this document are necessary limitations to create a community that is useful and welcoming to everybody. They allow members to satisfy all contributive impulses without aggravating themselves or encroaching on the freedom of others. Embracing these principles and obeying the guidelines therefore benefits the entire community by providing freedom from the disorder and other oppressive, harmful and negative consequences of a more chaotic approach.
+Common sense introduction
+    If you choose to use the Arch Linux distribution, you are welcomed, and encouraged to embrace the Arch Linux principles.
+    When asking for help, read the manual, do your research and provide details for those you are asking for assistance.
+    When offering help, be as patient and tactful as possible.
+Arch is a community of volunteers. Rather than providing a complicated pattern of balanced freedoms and restrictions, as well as the time, resources and personnel required to interpret and administer such rules, we have chosen a simple principle to embrace for the benefit of all. Therefore, this entire document may be condensed into one simple admonition:
+Proactively seek to give of yourself and to bring only benefit to your peers and community.
