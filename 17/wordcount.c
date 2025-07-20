@@ -7,7 +7,8 @@ int main() {
   char *word = malloc(10 * sizeof(char));
   scanf("%s", word);
   printf("%s", word);
-  while ((ch = fgetc(fptr)) != EOF) {
+  int count = 0;
+  while ((ch = fgetc(fptr)) == EOF) {
     putchar(ch);
   }
   fclose(fptr);
