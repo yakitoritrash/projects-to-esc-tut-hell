@@ -14,7 +14,6 @@ int main() {
   int ch;
   char sword[WORD_BUFFER_SIZE];
   scanf("%s", sword);
-  printf("%s\n", sword);
   char word[WORD_BUFFER_SIZE];
   int count = 0;
   while (fscanf(fptr, "%s", word) != EOF) {
@@ -22,6 +21,6 @@ int main() {
       count++;
     }
   }
-  printf("%d", count);
+  printf("%s: %d", sword, count);
   return 0;
 }
