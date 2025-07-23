@@ -14,4 +14,6 @@ void hashFunction(char *longURL, char *shortURL) {
   snprintf(shortURL, SHORT_URL_LENGTH, "%lx", hash % 1000000);
 }
 
+void storeURL(char *longURL, char *shortURL) {
 
+}
