@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//sys architecture. network and security
 
 #define WORD_BUFFER_SIZE 100
 
