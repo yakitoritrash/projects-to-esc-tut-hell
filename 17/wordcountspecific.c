@@ -17,7 +17,7 @@ int main() {
   char word[WORD_BUFFER_SIZE];
   int count = 0;
   while (fscanf(fptr, "%s", word) != EOF) {
-    if (strcmp(word, sword) == 0) {
+    if (strcasecmp(word, sword) == 0) {
       count++;
     }
   }
