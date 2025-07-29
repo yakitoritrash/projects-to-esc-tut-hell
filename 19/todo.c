@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void todo(char c) {
-  if (c == 'a') {
+void todo() {
+  char choice;
+  scanf("%c", &choice);
+  if (choice == 'a') {
 
   }
 }
 int main() {
-
 }
