@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void todo() {
   char choice;
   scanf("%c", &choice);
-  
+  char **strings = NULL;
+  int size = 5;
+  strings = (char**)malloc(sizeof(char*));
   if (choice == 'a') {
 
   }
