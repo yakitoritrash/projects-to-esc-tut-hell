@@ -28,7 +28,6 @@ void storeURL(char *longURL, char *shortURL) {
 
 int main() {
   char longURL[MAX_URL_LENGTH], shortURL[SHORT_URL_LENGTH];
-
   printf("Enter the long URL: ");
   fgets(longURL, MAX_URL_LENGTH, stdin);
   longURL[strcspn(longURL, "\n")] = 0;
