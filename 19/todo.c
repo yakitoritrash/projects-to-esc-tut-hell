@@ -16,4 +16,27 @@ task_t *create_task(char *task) {
   return new_task;
 }
 
-task_t *insert_task(char *task, 
+task_t *insert_task(char *task, task_t *head) {
+  task_t *new_task = create_task(task);
+  if (head == NULL) {
+    return new_task;
+  }
+  new_task->next = head;
+  head = new_task;
+  return head;
+}
+
+task_t *delete_task(int pos, task_t *head) {
+  task_t *tmp = head;
+  for (int i = 0; i < pos; i++) {
+    tmp = tmp->next;
+  }
+  task_t *to_delete = tmp->next;
+  tmp->next = to_delete->next;
+  free(to_delete);
+  return head;
+}
+
+void printlist(task_t *head) {
+
+}
