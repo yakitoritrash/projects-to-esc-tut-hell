@@ -14,7 +14,7 @@ int main(void) {
   };
 
   for (int i = 0; i < 100 && content.count > 0; i++) {
-    Nob_String_View token = nob_sv_chop_by_delim(&content, ' ');
+    Nob_String_View token = nob_sv_chop_by_space(&content);
     nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
   }
   return 0;
