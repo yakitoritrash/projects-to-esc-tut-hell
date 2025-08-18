@@ -2,6 +2,23 @@
 #define NOB_IMPLEMENTATION
 #include "nob.h"
 
+typedef struct {
+  Nob_String_View key;
+  size_t value;
+} FreqKV;
+
+typedef struct {
+  FreqKV *items;
+  size_t count;
+  size_t capacity;
+} FreqKVs;
+
+FreqKV *find_key() {
+  for (size_t i = 0; i < ) {
+
+  }
+}
+
 int main(void) {
   const char *file_path = "t8.shakespeare.txt";
   Nob_String_Builder buf = {0};
@@ -12,6 +29,8 @@ int main(void) {
     .data = buf.items,
     .count = buf.count,
   };
+
+  FreqKVs freq = {0};
 
   for (int i = 0; i < 1000 && content.count > 0; i++) {
     content = nob_sv_trim_left(content);
