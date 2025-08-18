@@ -13,7 +13,8 @@ int main(void) {
     .count = buf.count,
   };
 
-  for (int i = 0; i < 100 && content.count > 0; i++) {
+  for (int i = 0; i < 1000 && content.count > 0; i++) {
+    content = nob_sv_trim_left(content);
     Nob_String_View token = nob_sv_chop_by_space(&content);
     nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
   }
