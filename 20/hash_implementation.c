@@ -13,11 +13,11 @@ typedef struct {
   size_t capacity;
 } FreqKVs;
 
-FreqKV *find_key() {
-  for (size_t i = 0; i < ) {
-
-  }
-}
+//  FreqKV *find_key() {
+//    for (size_t i = 0; i < ) {
+//
+//    }
+//  }
 
 int main(void) {
   const char *file_path = "t8.shakespeare.txt";
@@ -32,10 +32,12 @@ int main(void) {
 
   FreqKVs freq = {0};
 
-  for (int i = 0; i < 1000 && content.count > 0; i++) {
+  size_t count = 0;
+  for (; content.count > 0; count++) {
     content = nob_sv_trim_left(content);
     Nob_String_View token = nob_sv_chop_by_space(&content);
     nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
   }
+  nob_log(NOB_INFO, "%s contains, %zu tokens", file_path, count);
   return 0;
 }
