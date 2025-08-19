@@ -23,6 +23,11 @@ FreqKV *find_key(FreqKVs haystack, Nob_String_View needle) {
   return NULL;
 }
 
+int compare_freqkv_count(const void *a, const void *b) {
+  const FreqKV *akv = a;
+  const FreqKV *bkv = b;
+  return (int)bkv->value - (int)akv->value;
+}
 int main(int argc, char **argv) {
   const char *program = nob_shift_args(&argc, &argv);
 
@@ -47,7 +52,6 @@ int main(int argc, char **argv) {
   for (; content.count > 0; count++) {
     content = nob_sv_trim_left(content);
     Nob_String_View token = nob_sv_chop_by_space(&content);
-    //nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
     FreqKV *kv = find_key(freq, token);
     if (kv) {
       kv->value += 1;
@@ -60,6 +64,13 @@ int main(int argc, char **argv) {
     }
 
   }
+
   nob_log(NOB_INFO, "%s contains, %zu tokens", file_path, count);
+  qsort(freq.items, freq.count, sizeof(freq.items[0]), compare_freqkv_count);
+
+  nob_log(NOB_INFO, "Top 10 tokens in %s", file_path);
+  for (size_t i = 0; i < 10 && i < freq.count; ++i) {
+    nob_log(NOB_INFO, " %zu: "SV_Fmt" => %zu", i, SV_Arg(freq.items[i].key), freq.items[i].value);
+  }
   return 0;
 }
