@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #define NOB_IMPLEMENTATION
 #include "nob.h"
 
@@ -28,6 +29,12 @@ int compare_freqkv_count(const void *a, const void *b) {
   const FreqKV *bkv = b;
   return (int)bkv->value - (int)akv->value;
 }
+void log_elapsed_time(struct timespec begin, struct timespec end) {
+  double a = (double)begin.tv_sec + begin.tv_nsec*1e-9;
+  double b = (double)end.tv_sec + end.tv_nsec*1e-9;
+  nob_log(NOB_INFO, "Elapsed time %lfsecs", b - a);
+}
+
 int main(int argc, char **argv) {
   const char *program = nob_shift_args(&argc, &argv);
 
@@ -48,6 +55,9 @@ int main(int argc, char **argv) {
 
   FreqKVs freq = {0};
 
+  struct timespec begin = {0};
+  int ret = clock_gettime(CLOCK_MONOTONIC, &begin);
+  assert(ret == 0);
   size_t count = 0;
   for (; content.count > 0; count++) {
     content = nob_sv_trim_left(content);
@@ -65,6 +75,11 @@ int main(int argc, char **argv) {
 
   }
 
+  struct timespec end = {0};
+  ret = clock_gettime(CLOCK_MONOTONIC, &end);
+  assert(ret == 0);
+
+  log_elapsed_time(begin, end);
   nob_log(NOB_INFO, "%s contains, %zu tokens", file_path, count);
   qsort(freq.items, freq.count, sizeof(freq.items[0]), compare_freqkv_count);
 
