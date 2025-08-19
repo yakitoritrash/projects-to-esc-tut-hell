@@ -41,6 +41,17 @@ int main(void) {
     content = nob_sv_trim_left(content);
     Nob_String_View token = nob_sv_chop_by_space(&content);
     //nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
+    FreqKV *kv = find_key(freq, token);
+    if (kv) {
+      kv->value += 1;
+    } else {
+      FreqKV new_kv = {
+        .key = token,
+        .value = 1
+      };
+      nob_da_append(&freq, new_kv);
+    }
+
   }
   nob_log(NOB_INFO, "%s contains, %zu tokens", file_path, count);
   return 0;
