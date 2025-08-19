@@ -13,11 +13,15 @@ typedef struct {
   size_t capacity;
 } FreqKVs;
 
-//  FreqKV *find_key() {
-//    for (size_t i = 0; i < ) {
-//
-//    }
-//  }
+FreqKV *find_key(FreqKVs haystack, Nob_String_View needle) {
+  for (size_t i = 0; i < haystack.count; ++i) {
+    nob_sv_eq(haystack.items[i].key, needle);
+    if (nob_sv_eq(haystack.items[i].key, needle)) {
+      return &haystack.items[i];
+    }
+  }
+  return NULL;
+}
 
 int main(void) {
   const char *file_path = "t8.shakespeare.txt";
@@ -36,7 +40,7 @@ int main(void) {
   for (; content.count > 0; count++) {
     content = nob_sv_trim_left(content);
     Nob_String_View token = nob_sv_chop_by_space(&content);
-    nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
+    //nob_log(NOB_INFO, " "SV_Fmt, SV_Arg(token));
   }
   nob_log(NOB_INFO, "%s contains, %zu tokens", file_path, count);
   return 0;
