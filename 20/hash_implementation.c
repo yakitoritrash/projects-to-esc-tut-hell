@@ -23,8 +23,15 @@ FreqKV *find_key(FreqKVs haystack, Nob_String_View needle) {
   return NULL;
 }
 
-int main(void) {
-  const char *file_path = "shakespeare-smol.txt";
+int main(int argc, char **argv) {
+  const char *program = nob_shift_args(&argc, &argv);
+
+  if (argc <= 0) {
+    nob_log(NOB_ERROR, "No input is provided");
+    nob_log(NOB_INFO, "Usage: %s <input.txt>", program);
+    return 1;
+  }
+  const char *file_path = nob_shift_args(&argc, &argv);
   Nob_String_Builder buf = {0};
   if (!nob_read_entire_file(file_path, &buf)) return 1;
   nob_log(NOB_INFO, "Size of %s is %zu bytes", file_path, buf.count);
