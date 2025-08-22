@@ -3,6 +3,6 @@
 
 int main() {
   char fact[1000];
-  strcpy(fact,"1"); 
+  strcpy(fact,"11111"); 
   printf("%999s", fact);
 }

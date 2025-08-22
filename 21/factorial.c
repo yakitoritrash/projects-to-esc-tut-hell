@@ -3,6 +3,7 @@
 
 void multiplyString(char num[], int factor) {
   int len = strlen(num);
+  printf("%d %s\n", len, num);
   int carry = 0;
   for (int i = len - 1; i >= 0; i--) {
     int digit = num[i] - '0';
@@ -22,6 +23,7 @@ void multiplyString(char num[], int factor) {
 void factorialString(int N) {
   char fact[1000];
   strcpy(fact, "1");
+  printf("%s\n", fact);
   for (int i = 2; i <= N; i++) {
     multiplyString(fact, i);
   }
