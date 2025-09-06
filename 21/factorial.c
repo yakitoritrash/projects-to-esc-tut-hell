@@ -3,8 +3,8 @@
 
 void multiplyString(char num[], int factor) {
   int len = strlen(num);
-  printf("%d %s\n", len, num);
   int carry = 0;
+  printf("%d %s %d %d\n", len, num, factor, carry);
   for (int i = len - 1; i >= 0; i--) {
     int digit = num[i] - '0';
     int product = digit * factor + carry;

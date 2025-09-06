@@ -3,4 +3,4 @@ function tempconversionctof (celsius) {
   console.log(fahrenheit);
 }
 
-tempconversionctof(60);
+tempconversionctof(5);
